@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)http://192.168.137.1:3000/indix.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="./website_files/___vscode_livepreview_injected_script"></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paresh E-Shop</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 0; }
+        .header { background-color: #007bff; color: white; padding: 20px; font-size: 24px; }
+        .profile img { width: 150px; border-radius: 50%; margin: 10px; }
+        .products { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
+        .product { border: 1px solid #ccc; padding: 10px; margin: 10px; width: 220px; text-align: center; }
+        .product img { width: 100px; height: 100px; }
+        .cart { margin-top: 20px; padding: 10px; border-top: 2px solid #007bff; }
+        .highlight { font-size: 18px; font-weight: bold; color: red; margin-top: 20px; }
+    </style>
+    <link rel="stylesheet" href="./website_files/style.css">
+    </head><body><netlify class="co"></netlify>
+
+        
+
+
+    <div class="header">Welcome to Paresh E-Shop</div>
+    <div><header>"Electronics Made Easy – Shop with Confidence!"</header></div>
+    
+    <div class="profile">
+        <img src="Paresh1 - Copy.jpg" alt="Paresh&#39;s Photo">
+        <p><strong>Paresh Kumar Sahu</strong></p>
+    </div>
+
+    <div class="products">
+        <div class="product">
+            <img src="phone.jpg/ " alt="Smartphone">
+            <h3>Smartphone</h3>
+            <p>₹15,0000</p>
+            <button onclick="orderProduct(&#39;Smartphone&#39;, 15000)">Order</button>
+            <button onclick="askQuestion(&#39;Smartphone&#39;)">Ask Question</button>
+        </div>
+        <div class="product">
+            <img src="laptop.jpg" alt="Laptop">
+            <h3>Laptop</h3>
+            <p>₹45,000</p>
+            <button onclick="orderProduct(&#39;Laptop&#39;, 45000)">Order</button>
+            <button onclick="askQuestion(&#39;Laptop&#39;)">Ask Question</button>
+        </div>
+        <div class="product">
+            <img src="laptop.jpg" alt="Headphones">
+            <h3>Headphones</h3>
+            <p>₹2,500</p>
+            <button onclick="orderProduct(&#39;Headphones&#39;, 1500)">Order</button>
+            <button onclick="askQuestion(&#39;Headphones&#39;)">Ask Question</button>
+        </div>
+        <div class="product">
+            <img src="smartwatch.jpg" alt="Smart Watch">
+            <h3>Smart Watch</h3>
+            <p>₹5,000</p>
+            <button onclick="orderProduct(&#39;Smart Watch&#39;, 5000)">Order</button>
+            <button onclick="askQuestion(&#39;Smart Watch&#39;)">Ask Question</button>
+        </div>
+    </div>
+
+    <div class="cart">
+        <h2>Shopping Cart</h2>
+        <div id="cart-items"></div>
+        <p><strong>Total: ₹<span id="total">0</span></strong></p>
+        <button onclick="checkout()">Checkout</button>
+    </div>
+
+    <div class="highlight">
+        <a href="https://www.instagram.com/pareshkumar819?utm_source=qr&amp;igsh=MTR5emE4YXZiN2Q4MQ==" target="_blank">
+            Follow Paresh on Instagram!
+        </a>
+    </div>
+
+    <script>
+        let cart = [];
+        let totalAmount = 0;
+
+        function orderProduct(product, price) {
+            let phone = prompt("Enter your phone number:");
+            let message = prompt(`Enter message for order (${product}):`);
+            let whatsappMessage = `https://wa.me/7328877138?text=Order%20Placed:%20${product}%20for%20₹${price}%0APhone:%20${phone}%0AMessage:%20${message}`;
+            window.open(whatsappMessage);
+            cart.push({ product, price });
+            totalAmount += price;
+            displayCart();
+        }
+
+        function askQuestion(product) {
+            let phone = prompt("Enter your phone number:");
+            let query = prompt(`Enter question about ${product}:`);
+            let whatsappQuery = `https://wa.me/7328877138?text=Product%20Inquiry:%20${product}%0AQuestion:%20${query}%0AFrom:%20${phone}`;
+            window.open(whatsappQuery);
+        }
+
+        function displayCart() {
+            let cartItems = document.getElementById('cart-items');
+            cartItems.innerHTML = "";
+            cart.forEach(item => {
+                cartItems.innerHTML += `<p>${item.product} - ₹${item.price}</p>`;
+            });
+            document.getElementById('total').innerText = totalAmount;
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+            let phone = prompt("Enter your phone number:");
+            let address = prompt("Enter your delivery address:");
+            let whatsappCheckout = `https://wa.me/7328877138?text=Checkout:%20Total%20₹${totalAmount}%0APhone:%20${phone}%0AAddress:%20${address}`;
+            window.open(whatsappCheckout);
+            cart = [];
+            totalAmount = 0;
+            displayCart();
+        }
+    </script>
+
+
+</body></html>
